@@ -7,6 +7,12 @@ class Details extends Component {
     event.preventDefault();
     this.props.history.push('/'); //moves user to next page
   };
+
+  handleMovie = (event) => {
+    event.preventDefault();
+    this.props.history.push('/add'); //moves user to next page
+  };
+
   render() {
     return (
       <div>
@@ -20,7 +26,16 @@ class Details extends Component {
         >
           Back to List
         </Button>
-      </div>
+        <Button
+          variant="outlined"
+          color="primary"
+          type="submit"
+          size="small"
+          onClick={this.handleMovie}
+        >
+          Add Movie
+        </Button>
+      </div> //temporary button for add-movie easy acces
     );
   }
 }
