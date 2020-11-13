@@ -13,11 +13,21 @@ CREATE TABLE "genres" (
 
 
 -- CREATE JUNCTION TABLE
+-- https://github.com/myronschippers/castor-sql-many-to-many/blob/main/database.sql
+CREATE TABLE "movies_genres" 
+	id serial primary key,
+	"movies_id" int references "movies",
+	"genres_id" int references "genres",
+	"genre" int
+
+  INSERT INTO "movies_genres" ("movies_id", "genres_id", "genre")
+VALUES (1, 1, 1),
+
 -- You will need to create the junction table that stores the relationships between "movies" and "genres"
 -- This table will need to be populated with some data as well (INSERTS)
 -- Recall that this Junction Table will just be a table of ids!
 
-
+/
 
 --------[ DATA! ]---------
 
