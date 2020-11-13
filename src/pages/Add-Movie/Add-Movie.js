@@ -14,18 +14,18 @@ class Add extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Adding book`); //this.state.newBook);
+    console.log(`Adding movie`, this.state.newMovie);
     // TODO - axios request to server to add book
-    // this.saveNewBook(this.state.newBook);
     this.props.dispatch({
       type: 'POST_MOVIE',
-      //payload: this.state.newBook,
+      payload: this.state.newMovie,
     });
+    this.props.history.push('/'); //moves user back to home to next page
   };
 
   handleChangeFor = (propertyName) => (event) => {
     this.setState({
-      newBook: {
+      newMovie: {
         ...this.state.newMovie,
         [propertyName]: event.target.value,
       },
@@ -42,19 +42,19 @@ class Add extends Component {
         <input
           required
           placeholder="Title"
-          // value={this.state.newBook.title}
+          value={this.state.newMovie.title}
           onChange={this.handleChangeFor('title')}
         />
         <input
           required
           placeholder="Poster URL"
-          //value={this.state.newBook.author}
-          onChange={this.handleChangeFor('url')}
+          value={this.state.newMovie.poster}
+          onChange={this.handleChangeFor('poster')}
         />{' '}
         <input
           required
           placeholder="Description"
-          //value={this.state.newBook.author}
+          value={this.state.newMovie.description}
           onChange={this.handleChangeFor('description')}
         />
         <label for="Genre">Choose a Genre:</label>
@@ -79,12 +79,13 @@ class Add extends Component {
           size="small"
           onClick={this.handleSubmit}
         >
-          Next Page
+          Add Movie
         </Button>
       </div>
     );
   }
 }
+
 export default connect()(Add);
 
 // This should show:

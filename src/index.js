@@ -15,6 +15,7 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeLatest('GET_MOVIES', getMovies);
+  yield takeLatest('POST_MOVIE', postMovie);
 }
 
 //app.use('/api/movie', movieRouter);   --axios URL
@@ -39,6 +40,23 @@ const genres = (state = [], action) => {
       return state;
   }
 };
+
+function* postMovie(action) {
+  console.log('tweet tweet');
+  try {
+    yield put({ type: 'ERROR_RESET' });
+    yield axios.post('/api/movie', action.payload);
+    yield put({
+      type: 'SET_MOVIES',
+    });
+  } catch (err) {
+    console.log(err);
+    yield put({
+      type: 'ERROR_MSG',
+      payload: "Sorry we couldn't save your book. Please try again.",
+    });
+  }
+}
 
 function* getMovies(action) {
   try {
