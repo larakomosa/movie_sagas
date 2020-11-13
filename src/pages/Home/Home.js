@@ -9,6 +9,12 @@ class Home extends Component {
       type: 'GET_MOVIES',
     });
   }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.history.push('/details'); //path tbd
+  };
+
   render() {
     return (
       <div>
@@ -20,9 +26,8 @@ class Home extends Component {
           size="small"
           onClick={this.handleSubmit}
         >
-          Stub
+          Next Page
         </Button>
-        ;
       </div>
     );
   }

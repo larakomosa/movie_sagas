@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'; //brought in to access page linking
 
 class MovieItem extends Component {
   // deleteFruit = () => {
@@ -11,8 +11,9 @@ class MovieItem extends Component {
   //     payload: this.props.basketItem.id,
   //   });
   // };
-  handleClick = () => {
-    console.log('meow meow');
+  handleClick = (event) => {
+    console.log('meow');
+    this.props.history.push(`/details`);
   };
 
   render() {
@@ -27,10 +28,11 @@ class MovieItem extends Component {
   }
 }
 
-//When a movie poster is clicked, a user should be brought to the `/details` view.
-
 const mapStoreToProps = (store) => ({
   store,
 });
 
-export default connect(mapStoreToProps)(MovieItem);
+export default withRouter(connect(mapStoreToProps)(MovieItem));
+
+//Using withRouter to access this.props.history.push
+//stackoverflow.com/questions/53539314/what-is-withrouter-for-in-react-router-dom

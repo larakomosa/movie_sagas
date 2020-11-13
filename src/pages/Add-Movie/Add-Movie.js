@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 class Add extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push('/'); //path tbd
+    this.props.history.push('/details'); //path tbd
   };
 
   render() {
@@ -19,7 +19,7 @@ class Add extends Component {
           size="small"
           onClick={this.handleSubmit}
         >
-          Stub
+          Next Page
         </Button>
       </div>
     );

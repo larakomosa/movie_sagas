@@ -10,7 +10,7 @@ class Details extends Component {
   render() {
     return (
       <div>
-        <h2>Details</h2>
+        DETAILS PAGE
         <Button
           variant="outlined"
           color="primary"
@@ -27,5 +27,5 @@ class Details extends Component {
 export default connect()(Details);
 
 // This should show all details **including genres**, for the selected movie.
-//  > Hint : You can make a GET request for a specific movie.
+//  > Hint : You can make a GET request for a specific movies---> ????
 // The details page should have the button:

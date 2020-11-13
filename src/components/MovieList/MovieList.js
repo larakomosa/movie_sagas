@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
 import MovieItem from '../../components/MovieItem/MovieItem.js';
 import '../MovieItem/MovieItem.css'; //imported so item specific formatting is including on render
 
