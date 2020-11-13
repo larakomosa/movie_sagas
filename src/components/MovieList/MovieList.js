@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
-import MovieList from '../../components/MovieList/MovieList.js';
+import MovieItem from '../../components/MovieItem/MovieItem.js';
 
-class Home extends Component {
+class MovieList extends Component {
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_MOVIES',
     });
   }
   render() {
+    const htmlArray = this.props.store.movies.map((item, index) => {
+      return <MovieItem key={index} item={item} />;
+    });
     return (
       <div>
-        <MovieList />
+        <ul>{htmlArray}</ul>
         <Button
           variant="outlined"
           color="primary"
@@ -32,4 +35,4 @@ const mapStateToProps = (store) => ({
   store,
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(MovieList);
