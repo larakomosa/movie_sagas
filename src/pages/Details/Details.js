@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 class Details extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push('/add'); //moves user to next page
+    this.props.history.push('/'); //moves user to next page
   };
   render() {
     return (
@@ -18,10 +18,14 @@ class Details extends Component {
           size="small"
           onClick={this.handleSubmit}
         >
-          Stub
+          Back to List
         </Button>
       </div>
     );
   }
 }
 export default connect()(Details);
+
+// This should show all details **including genres**, for the selected movie.
+//  > Hint : You can make a GET request for a specific movie.
+// The details page should have the button:

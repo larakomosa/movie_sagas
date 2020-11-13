@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class MovieItem extends Component {
   // deleteFruit = () => {
@@ -10,16 +11,21 @@ class MovieItem extends Component {
   //     payload: this.props.basketItem.id,
   //   });
   // };
+  handleClick = () => {
+    console.log('meow meow');
+  };
 
   render() {
     return (
       <div>
         <li>{this.props.item.title}</li>
-        <img src={this.props.item.poster} />
+        <img src={this.props.item.poster} onClick={this.handleClick} />
       </div>
     );
   }
 }
+
+//When a movie poster is clicked, a user should be brought to the `/details` view.
 
 const mapStoreToProps = (store) => ({
   store,

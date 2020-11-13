@@ -1,9 +1,24 @@
-# Project Name
+## MOVIE DATABASE
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Description
 
-## Description
+"Hey Siri, remind me at 5:00pm on Sunday to add a description to my project"
 
-Your project description goes here. What problem did you solve? How did you solve it?
+# Screenshot
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+"Hey Siri, remind me at 5:00pm on Sunday to add a screenshot to my project"
+
+# Built With
+
+- React
+- Redux
+- JavaScript
+- Material UI
+- CSS
+- HTML
+- Axios
+- Saga
+
+# Acknowledgement
+
+Thank you to Prime Digital Academy for equipping me with the knowledge and resources to create this application. Their instructors are first-rate!
