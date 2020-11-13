@@ -3,15 +3,18 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 
 class Home extends Component {
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.history.push('/details'); //moves user to next page
-  };
-
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_MOVIES',
+    });
+  }
   render() {
+    const htmlArray = this.props.store.movies.map((item, index) => {
+      return <li key={index}>{item.movie}</li>;
+    });
     return (
       <div>
-        <h2>HomePage</h2>
+        <ul>{htmlArray}</ul>
         <Button
           variant="outlined"
           color="primary"
@@ -21,8 +24,14 @@ class Home extends Component {
         >
           Stub
         </Button>
+        ;
       </div>
     );
   }
 }
-export default connect()(Home);
+
+const mapStateToProps = (store) => ({
+  store,
+});
+
+export default connect(mapStateToProps)(Home);

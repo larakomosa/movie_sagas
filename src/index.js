@@ -4,20 +4,21 @@ import './index.css';
 import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-// Provider allows us to use redux within our react app
+
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
-// Import saga middleware
+
 import createSagaMiddleware from 'redux-saga';
+import { takeLatest, put } from 'redux-saga/effects';
+import axios from 'axios';
 
 // Create the rootSaga generator function
-function* rootSaga() {}
+function* rootSaga() {
+  yield takeLatest('GET_MOVIES', getMovies);
+}
 
 //app.use('/api/movie', movieRouter);   --axios URL
 //app.use('/api/genre', genreRouter);   --axios URL
-
-// Create sagaMiddleware
-const sagaMiddleware = createSagaMiddleware();
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
@@ -38,6 +39,28 @@ const genres = (state = [], action) => {
       return state;
   }
 };
+
+function* getMovies(action) {
+  try {
+    yield put({ type: 'ERROR_RESET' });
+    const response = yield axios.get('/api/movie');
+    console.log(response.data);
+    // version of a dispatch = put
+    yield put({
+      type: 'SET_MOVIES',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log(err);
+    yield put({
+      type: 'ERROR_MSG',
+      payload: 'There was a problem loading movies. Please try again.',
+    });
+  }
+}
+
+// Create sagaMiddleware
+const sagaMiddleware = createSagaMiddleware();
 
 // Create one store that all components can use
 const storeInstance = createStore(
