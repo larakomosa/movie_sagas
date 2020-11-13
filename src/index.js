@@ -15,6 +15,7 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeLatest('GET_MOVIES', getMovies);
+  yield takeLatest('GET_SELECTED', getSelected);
   yield takeLatest('POST_MOVIE', postMovie);
 }
 
@@ -31,10 +32,30 @@ const movies = (state = [], action) => {
   }
 };
 
+const selected = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_SELECTED':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // Used to store the movie genres
 const genres = (state = [], action) => {
   switch (action.type) {
     case 'SET_GENRES':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+// Thanks Joey Heitz for this idea!
+const selectedPoster = (state = [], action) => {
+  console.log('action', action);
+  switch (action.type) {
+    case 'ID_CALL':
       return action.payload;
     default:
       return state;
@@ -77,6 +98,26 @@ function* getMovies(action) {
   }
 }
 
+function* getSelected(action) {
+  console.log('moo moo', action.payload);
+  try {
+    yield put({ type: 'ERROR_RESET' });
+    const response = yield axios.get(`/api/movie/${action.payload}`);
+    console.log(response.data);
+    // version of a dispatch = put
+    yield put({
+      type: 'SET_SELECTED',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log(err);
+    yield put({
+      type: 'ERROR_MSG',
+      payload: 'There was a problem loading movies. Please try again.',
+    });
+  }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -85,6 +126,8 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
+    selectedPoster,
+    selected,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)

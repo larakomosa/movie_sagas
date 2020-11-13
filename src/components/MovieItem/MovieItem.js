@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'; //brought in to access page linking
 
 class MovieItem extends Component {
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_MOVIES',
+    });
+  }
   // deleteFruit = () => {
   //   console.log('button triggered');
   //   this.props.dispatch({
@@ -13,7 +18,8 @@ class MovieItem extends Component {
   // };
   handleClick = (id) => {
     console.log('meow');
-    this.props.history.push(`/details/${id}`);
+    this.props.history.push(`/details/`);
+    this.props.dispatch({ type: 'ID_CALL', payload: this.props.item.id });
     console.log('id', id);
     console.log(this.props.item.id);
   };
