@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
+import MovieItem from '../MovieItem/MovieItem.js';
 
 class Home extends Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class Home extends Component {
   }
   render() {
     const htmlArray = this.props.store.movies.map((item, index) => {
-      return <li key={index}>{item.movie}</li>;
+      return <MovieItem key={index} item={item} />;
     });
     return (
       <div>
