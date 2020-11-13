@@ -11,15 +11,20 @@ class MovieItem extends Component {
   //     payload: this.props.basketItem.id,
   //   });
   // };
-  handleClick = (event) => {
+  handleClick = (id) => {
     console.log('meow');
-    this.props.history.push(`/details`);
+    this.props.history.push(`/details/${id}`);
+    console.log('id', id);
+    console.log(this.props.item.id);
   };
 
   render() {
     return (
       <div className="itemDiv col-4">
-        <div className="movieBox" onClick={this.handleClick}>
+        <div
+          className="movieBox"
+          onClick={(event) => this.handleClick(this.props.item.id)}
+        >
           <div className="titleControl"> {this.props.item.title}</div>
           <img src={this.props.item.poster} />
         </div>
