@@ -17,9 +17,11 @@ class MovieItem extends Component {
 
   render() {
     return (
-      <div>
-        <li>{this.props.item.title}</li>
-        <img src={this.props.item.poster} onClick={this.handleClick} />
+      <div className="itemDiv col-4">
+        <div className="movieBox" onClick={this.handleClick}>
+          <div className="titleControl"> {this.props.item.title}</div>
+          <img src={this.props.item.poster} />
+        </div>
       </div>
     );
   }

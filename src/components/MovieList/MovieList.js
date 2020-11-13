@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import MovieItem from '../../components/MovieItem/MovieItem.js';
+import '../MovieItem/MovieItem.css'; //imported so item specific formatting is including on render
 
 class MovieList extends Component {
   componentDidMount() {
@@ -14,18 +15,8 @@ class MovieList extends Component {
       return <MovieItem key={index} item={item} />;
     });
     return (
-      <div>
-        <ul>{htmlArray}</ul>
-        <Button
-          variant="outlined"
-          color="primary"
-          type="submit"
-          size="small"
-          onClick={this.handleSubmit}
-        >
-          Stub
-        </Button>
-        ;
+      <div className="bootstrap">
+        <div className="row">{htmlArray}</div>
       </div>
     );
   }
