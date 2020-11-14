@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.sendStatus('Server Side Error', 500);
+      res.sendStatus('Server Side All Movies Error', 500);
     });
 });
 
@@ -29,7 +29,7 @@ WHERE "movies".id = $1`;
     })
     .catch((err) => {
       console.log(err);
-      res.sendStatus('Server Side Error', 500);
+      res.sendStatus('Server Side 1 Movie Error', 500);
     });
 });
 

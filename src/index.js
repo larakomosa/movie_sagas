@@ -17,12 +17,10 @@ function* rootSaga() {
   yield takeLatest('GET_MOVIES', getMovies);
   yield takeLatest('GET_SELECTED', getSelected);
   yield takeLatest('POST_MOVIE', postMovie);
+  //***Need to do error message reducer***
 }
 
-//app.use('/api/movie', movieRouter);   --axios URL
-//app.use('/api/genre', genreRouter);   --axios URL
-
-// Used to store movies returned from the server
+// Used to store movie details
 const movies = (state = [], action) => {
   switch (action.type) {
     case 'SET_MOVIES':
@@ -32,19 +30,20 @@ const movies = (state = [], action) => {
   }
 };
 
+// Used to store targeted (by ID) movie and genre information
 const selected = (state = [], action) => {
   switch (action.type) {
     case 'SET_SELECTED':
-      return action.payload;
+      return action.payload; //{Selected Movie Object} + [Genre Array]
     default:
       return state;
   }
 };
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
+const genres = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_SELECTED_GENRES':
+    case 'SET_GENRES':
       return action.payload;
     default:
       return state;
@@ -62,8 +61,9 @@ const selectedPoster = (state = [], action) => {
   }
 };
 
+// Add Movie to Home Page
 function* postMovie(action) {
-  console.log('tweet tweet');
+  console.log('tweet tweet, post');
   try {
     yield put({ type: 'ERROR_RESET' });
     yield axios.post('/api/movie', action.payload);
@@ -73,8 +73,8 @@ function* postMovie(action) {
   } catch (err) {
     console.log(err);
     yield put({
-      type: 'ERROR_MSG',
-      payload: "Sorry we couldn't save your book. Please try again.",
+      type: 'ERROR_MSG', //***Need to do error message reducer***
+      payload: "Sorry we couldn't save your movie. Please try again.",
     });
   }
 }
@@ -90,25 +90,41 @@ function* getMovies(action) {
       payload: response.data,
     });
   } catch (err) {
-    console.log(err);
+    console.log('GET all movies error', err);
     yield put({
-      type: 'ERROR_MSG',
-      payload: 'There was a problem loading movies. Please try again.',
+      type: 'ERROR_MSG', //***Need to do error message reducer***
+      payload: 'There was a problem the details! Please try again.',
     });
   }
 }
+// `SELECT * FROM "movies"
+// JOIN "movies_genres" ON "movies".id = "movies_genres".movie_id
+// JOIN "genres" ON "movies_genres".genre_id = "genres".id
+// WHERE "movies".id = $1`;
 
+// movie_id: 3 Captain Marvel
+// genre_id: 1 = movie.genre_id: 1 (adventure)
+// category: Adventure = movie.name: Adventure
+
+// movie_id: 3 Captain Marvel
+// genre_id: 13 = movie.genre_id: 13 (adventure)
+// category: SuperHero = movie.name: SuperHero
+
+// GET a single movie
 function* getSelected(action) {
-  console.log('moo moo', action.payload);
+  console.log('moo, moo SHOW ID', action);
   try {
-    yield put({ type: 'ERROR_RESET' });
     const response = yield axios.get(`/api/movie/${action.payload}`);
-    console.log(response.data);
-    // version of a dispatch = put
+    const genreArray = response.data.map((movie) => {
+      return {
+        genre_id: movie.genre_id, //
+        category: movie.name, //<----transforms ID to item
+      };
+    });
     yield put({
       type: 'SET_SELECTED',
-      payload: response.data[0], //<----(Sends 1st array only (at index of zero)
-    });
+      payload: { ...response.data[0], genreArray }, // <----Send 1st movie array only (index of zero) + genreArray
+    }); // <--- Thanks to my friend Joe Kuckleman with Programmatis for showing me this payload trick.
   } catch (err) {
     console.log(err);
     yield put({

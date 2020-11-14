@@ -10,19 +10,19 @@ class Selected extends Component {
       type: 'GET_SELECTED',
       payload: this.props.store.selectedPoster,
     });
-    //   this.props.dispatch({.    <----Genre and Poster are accessed through same request
-    //     type: 'GET_SELECTED_GENRE',
-    //     payload: this.props.store.selectedPoster,
-    //   });
-    // }}
   }
-
   render() {
-    //Map is no longer needed for movie details since there is only one array.  Data will now be accessed through store.
-    //Genre is still pulled in GET stored in arrays but only IDs, need to figured out that still
+    let htmlArray = null;
+    if (this.props.store.selected.genreArray) {
+      htmlArray = this.props.store.selected.genreArray.map((item, index) => {
+        return <p key={index}>{item.category}</p>;
+      });
+    }
     return (
       <div>
+        <h2>{this.props.store.selected.title}</h2>
         <SelectedItem />
+        <div className="genres">{htmlArray}</div>
       </div>
     );
   }
