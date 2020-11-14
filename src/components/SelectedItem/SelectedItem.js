@@ -7,9 +7,9 @@ class SelectedItem extends Component {
   render() {
     return (
       <div>
-        <h2>{this.props.item.title}</h2>
-        <img src={this.props.item.poster} />
-        <p>{this.props.item.description}</p>
+        <h2>{this.props.store.selected.title}</h2>
+        <img src={this.props.store.selected.poster} />
+        <p>{this.props.store.selected.description}</p>
       </div>
     );
   }

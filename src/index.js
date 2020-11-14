@@ -44,7 +44,7 @@ const selected = (state = [], action) => {
 // Used to store the movie genres
 const genres = (state = [], action) => {
   switch (action.type) {
-    case 'SET_GENRES':
+    case 'SET_SELECTED_GENRES':
       return action.payload;
     default:
       return state;
@@ -107,7 +107,7 @@ function* getSelected(action) {
     // version of a dispatch = put
     yield put({
       type: 'SET_SELECTED',
-      payload: response.data,
+      payload: response.data[0], //<----(Sends 1st array only (at index of zero)
     });
   } catch (err) {
     console.log(err);
@@ -117,6 +117,12 @@ function* getSelected(action) {
     });
   }
 }
+
+//  Garden Example
+//     const response = yield axios.get(`/api/plant/details/${action.payload}`);
+//     yield put({
+//     type: 'SET_DETAILS',
+//     payload: response.data[0] <----(Send 1st array only (at index of zero)
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

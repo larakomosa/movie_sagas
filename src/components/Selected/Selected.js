@@ -10,16 +10,19 @@ class Selected extends Component {
       type: 'GET_SELECTED',
       payload: this.props.store.selectedPoster,
     });
-    console.log('details page', this.props.store.selectedPoster);
+    //   this.props.dispatch({.    <----Genre and Poster are accessed through same request
+    //     type: 'GET_SELECTED_GENRE',
+    //     payload: this.props.store.selectedPoster,
+    //   });
+    // }}
   }
 
   render() {
-    const select = this.props.store.selected.map((item, index) => {
-      return <SelectedItem key={index} item={item} />;
-    });
+    //Map is no longer needed for movie details since there is only one array.  Data will now be accessed through store.
+    //Genre is still pulled in GET stored in arrays but only IDs, need to figured out that still
     return (
       <div>
-        <h1>{select}</h1>
+        <SelectedItem />
       </div>
     );
   }
