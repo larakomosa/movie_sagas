@@ -2,23 +2,44 @@
   text-align: center;
 }
 
-
-.App-header {
-  background-color: #222;
-  height: 150px;
+.header {
+  background-image: url(header.png);
+  height: 100px;
   padding: 20px;
   color: white;
+  margin-bottom: 15px;
 }
 
 .App-title {
   font-size: 1.5em;
+  margin-top: ;
 }
 
 .App-intro {
   font-size: large;
 }
 
+h4 {
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 15px;
+  font-size: 0.75rem;
+  font-family: fantasy;
+  background-color: black;
+}
+
+nav {
+  float: right;
+  color: white;
+  font: fantasy;
+  display: block;
+}
+
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
