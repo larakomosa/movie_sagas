@@ -63,7 +63,7 @@ const selectedPoster = (state = [], action) => {
 
 // Add Movie to Home Page
 function* postMovie(action) {
-  console.log('tweet tweet, post');
+  console.log('tweet tweet, post', action);
   try {
     yield put({ type: 'ERROR_RESET' });
     yield axios.post('/api/movie', action.payload);

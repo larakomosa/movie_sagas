@@ -8,7 +8,7 @@ class Add extends Component {
       title: '',
       poster: '',
       description: '',
-      genre: '',
+      genre_id: '',
     },
   };
 
@@ -16,10 +16,26 @@ class Add extends Component {
     event.preventDefault();
     console.log(`Adding movie`, this.state.newMovie);
     // TODO - axios request to server to add book
-    this.props.dispatch({
-      type: 'POST_MOVIE',
-      payload: this.state.newMovie,
-    });
+
+    if (
+      this.state.newMovie.title === '' ||
+      this.state.newMovie.poster === '' ||
+      this.state.newMovie.description === ''
+    ) {
+      alert('Please select a number that indicates how you are feeling');
+    } else if (this.state.newMovie.genre_id === '') {
+      alert('Please choose a genre');
+    } else {
+      this.props.dispatch({
+        type: 'POST_MOVIE',
+        payload: this.state.newMovie,
+      });
+      this.props.history.push('/'); //moves user back to home to next page
+    }
+  };
+
+  handleCancel = (event) => {
+    event.preventDefault();
     this.props.history.push('/'); //moves user back to home to next page
   };
 
@@ -36,9 +52,6 @@ class Add extends Component {
     return (
       <div>
         <h2>Add Movie</h2>
-        {/* ('Adventure'), ('Animated'), ('Biographical'), ('Comedy'), ('Disaster'),
-        ('Drama'), ('Epic'), ('Fantasy'), ('Musical'), ('Romantic'), ('Science
-        Fiction'), ('Space-Opera'), ('Superhero'); */}
         <input
           required
           placeholder="Title"
@@ -58,19 +71,39 @@ class Add extends Component {
           onChange={this.handleChangeFor('description')}
         />
         <label for="Genre">Choose a Genre:</label>
-        <select name="Genre" id="genre">
-          <option value="adventure">Adventure</option>
-          <option value="animated">Animated</option>
-          <option value="biographical">Biographical</option>
-          <option value="comedy">Comedy</option>
-          <option value="disaster">Disaster</option>
-          <option value="drama">Drama</option>
-          <option value="epic">Epic</option>
-          <option value="fantasy">Fantasy</option>
-          <option value="musical">Musical</option>
-          <option value="romantic">Science Fiction</option>
-          <option value="space opera">Space-Opera</option>
-          <option value="superhero">Superhero</option>
+        {/* <select name="Genre" id="genre_id">
+          <option onChange={this.handleChangeFor('genre_id')} value="1">
+            Adventure
+          </option>
+          <option value="2">Animated</option>
+          <option value="3">Biographical</option>
+          <option value="4">Comedy</option>
+          <option value="5">Disaster</option>
+          <option value="6">Drama</option>
+          <option value="7">Epic</option>
+          <option value="8">Fantasy</option>
+          <option value="9">Musical</option>
+          <option value="10">Science Fiction</option>
+          <option value="11">Space-Opera</option>
+          <option value="12">Superhero</option>
+        </select> */}
+        <select
+          value={this.state.newMovie.value}
+          onChange={this.handleChangeFor('genre_id')}
+        >
+          <option value="">Choose a Genre</option>
+          <option value="1">Adventure</option>
+          <option value="2">Animated</option>
+          <option value="3">Biographical</option>
+          <option value="4">Comedy</option>
+          <option value="5">Disaster</option>
+          <option value="6">Drama</option>
+          <option value="7">Epic</option>
+          <option value="8">Fantasy</option>
+          <option value="9">Musical</option>
+          <option value="10">Science Fiction</option>
+          <option value="11">Space-Opera</option>
+          <option value="12">Superhero</option>
         </select>
         <Button
           variant="outlined"
@@ -79,7 +112,16 @@ class Add extends Component {
           size="small"
           onClick={this.handleSubmit}
         >
-          Add Movie
+          Save
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          type="submit"
+          size="small"
+          onClick={this.handleCancel}
+        >
+          Cancel
         </Button>
       </div>
     );
@@ -87,20 +129,12 @@ class Add extends Component {
 }
 
 export default connect()(Add);
+//capturing values using drop down boxes:
+//https://stackoverflow.com/questions/29108779/how-to-get-selected-value-of-a-dropdown-menu-in-reactjs
 
 // This should show:
 
-// - an input field (for the movie title)
-// - an input field (for the movie poster image URL))
-// - a textarea (for the movie description)
+// X an input field (for the movie title)
+// X an input field (for the movie poster image URL))
+// X a textarea (for the movie description)
 // X a dropdown (for the genres)
-
-// The Add Movie page should have the buttons:
-
-// - `Cancel` button, which should bring the user to the Home/List Page
-// - `Save` button, which should update the title and description in the database and bring the user to the Home/List Page (which now has the new movie)
-
-// > Hint: Look at the /api/movie POST route -- it's been made already
-// > Hint: You'll want to use the genres that are in the db for your dropdown
-
-// > Base functionality does not require being able to select more than one genre for a new movie
