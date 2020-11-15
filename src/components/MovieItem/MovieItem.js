@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 // import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { Button } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 
 class MovieItem extends Component {
   componentDidMount() {
@@ -31,6 +32,7 @@ class MovieItem extends Component {
   render() {
     return (
       <Card className="itemDiv col-4" borderColor="primary.main">
+        <Divider />
         <CardContent
           className="movieBox"
           onClick={(event) => this.handleClick(this.props.item.id)}
@@ -41,12 +43,21 @@ class MovieItem extends Component {
             variant="h5"
             component="h2"
           >
-            {this.props.item.title}
+            <h3>{this.props.item.title}</h3>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             <img src={this.props.item.poster} class="rounded" />
           </Typography>
+          <br />
+          <button
+            type="button"
+            class="btn btn-outline-info .btm-sm"
+            onClick={(event) => this.handleClick(this.props.item.id)}
+          >
+            <h5>More Information</h5>
+          </button>
         </CardContent>
+        <Divider />
       </Card>
     );
   }

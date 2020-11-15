@@ -9,3 +9,14 @@
 .titleControl {
   height: 25px;
 }
+
+.movieButton {
+  margin-top: 15px;
+}
+
+.btn-outline-info {
+  height: 30px;
+  padding-top: 5px;
+  border: rgb(43, 12, 12) solid 1px;
+  color: black;
+}

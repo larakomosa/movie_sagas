@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import SelectedItem from '../SelectedItem/SelectedItem';
 import '../SelectedItem/SelectedItem.css'; //imported so item specific formatting is including on render
 import './Selected.css';
+import Divider from '@material-ui/core/Divider';
 
 class Selected extends Component {
   componentDidMount() {
@@ -17,13 +18,17 @@ class Selected extends Component {
     let htmlArray = null;
     if (this.props.store.selected.genreArray) {
       htmlArray = this.props.store.selected.genreArray.map((item, index) => {
-        return <p key={index}>{item.category}</p>;
+        return <h3 key={index}>{item.category}</h3>;
       });
     }
     return (
       <div>
         <SelectedItem />
-        <div className="genres col-8">{htmlArray}</div>
+        <div className="genres col-8">
+          <h2>Genres</h2>
+          <Divider />
+          {htmlArray}
+        </div>
       </div>
     );
   }

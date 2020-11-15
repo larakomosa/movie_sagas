@@ -15,11 +15,12 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="header">
-            <h2>Blockbusters</h2>
-            <nav>
+            <h1>CINEMA</h1>
+            <nav class="navbar-header">
               <h4>
-                <Link to="/">HOME</Link>
+                <Link to="/">HOME </Link>
               </h4>
+              {'        '}
               <h4>
                 <Link to="/add"> ADD MOVIES</Link>
               </h4>
