@@ -2,8 +2,7 @@
   margin-top: 0px;
   float: right;
   text-align: center;
-
-  display: inline;
+  margin-bottom: 25px;
 }
 
 h3 {
@@ -17,7 +16,4 @@ h3 {
 
 td {
   display: inline-block;
-}
-
-.button {
 }

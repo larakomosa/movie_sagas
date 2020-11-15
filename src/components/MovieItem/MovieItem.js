@@ -51,7 +51,6 @@ class MovieItem extends Component {
             <h4>Learn More</h4>
           </button>
         </CardContent>
-        <Divider />
       </Card>
     );
   }

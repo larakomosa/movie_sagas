@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 //import stylings
-import { Button } from '@material-ui/core';
 import SelectedItem from '../SelectedItem/SelectedItem';
 import '../SelectedItem/SelectedItem.css'; //imported so item specific formatting is including on render
 import './Selected.css';
