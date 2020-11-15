@@ -51,10 +51,10 @@ class MovieItem extends Component {
           <br />
           <button
             type="button"
-            class="btn btn-outline-info .btm-sm"
+            class="btn btn-outline-warning .btm-sm"
             onClick={(event) => this.handleClick(this.props.item.id)}
           >
-            <h5>More Information</h5>
+            <h5>Learn More</h5>
           </button>
         </CardContent>
         <Divider />

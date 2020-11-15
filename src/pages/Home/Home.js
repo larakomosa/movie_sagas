@@ -19,15 +19,6 @@ class Home extends Component {
     return (
       <div>
         <MovieList />
-        <Button
-          variant="outlined"
-          color="primary"
-          type="submit"
-          size="small"
-          onClick={this.handleSubmit}
-        >
-          Next Page
-        </Button>
       </div>
     );
   }

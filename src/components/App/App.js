@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
+
+//import stylings
 import 'bootstrap/dist/css/bootstrap.css'; //importing bootstrap for formatting
 import './App.css';
 
+//import pages using routes
 import Home from '../../pages/Home/Home';
 import Details from '../../pages/Details/Details';
 import Add from '../../pages/Add-Movie/Add-Movie';
-import { makeStyles } from '@material-ui/core/styles';
 
+//final render/order/paths of all pages
+// Renders the entire app on the DOM
 class App extends Component {
-  // Renders the entire app on the DOM
   render() {
     return (
       <Router>
@@ -17,13 +20,13 @@ class App extends Component {
           <div className="header">
             <h1>CINEMA</h1>
             <nav class="navbar-header">
-              <h4>
+              <h5>
                 <Link to="/">HOME </Link>
-              </h4>
+              </h5>
               {'        '}
-              <h4>
+              <h5>
                 <Link to="/add"> ADD MOVIES</Link>
-              </h4>
+              </h5>
             </nav>
           </div>
           <Route exact path="/" component={Home} />

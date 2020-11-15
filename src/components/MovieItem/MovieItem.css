@@ -8,15 +8,18 @@
 
 .titleControl {
   height: 25px;
+  padding-bottom: 50px;
+  padding-top: 10px;
+  vertical-align: center;
 }
 
 .movieButton {
   margin-top: 15px;
 }
 
-.btn-outline-info {
+.btn-outline-warning {
   height: 30px;
   padding-top: 5px;
-  border: rgb(43, 12, 12) solid 1px;
-  color: black;
+  /* border: rgb(43, 12, 12) solid 1px; */
+  color: #877c47;
 }
