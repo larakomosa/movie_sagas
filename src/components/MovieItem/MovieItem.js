@@ -10,6 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 class MovieItem extends Component {
+  componentDidMount() {
+    //"GETS" movies on page load
+    this.props.dispatch({
+      type: 'GET_MOVIES',
+    });
+  }
   handleClick = (id) => {
     //sends user to targeting ID details page/sends ID to reducer
     this.props.history.push(`/details/${this.props.item.id}`);

@@ -6,6 +6,8 @@ import Divider from '@material-ui/core/Divider';
 class SelectedItem extends Component {
   render() {
     return (
+      //bootstrap is used to format page so poster and description are side by side
+      //movie details are accessed from store using "selected" reducer
       <div className="row">
         <div className="image col-4">
           <img src={this.props.store.selected.poster} class="rounded" />
