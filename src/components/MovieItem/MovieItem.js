@@ -40,7 +40,11 @@ class MovieItem extends Component {
             <h3>{this.props.item.title}</h3>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <img src={this.props.item.poster} class="rounded" />
+            <img
+              src={this.props.item.poster}
+              class="rounded"
+              alt={this.props.item.description}
+            />
           </Typography>
           <br />
           <button

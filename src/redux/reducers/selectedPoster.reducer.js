@@ -1,4 +1,6 @@
 // Thanks Joey Heitz for this idea!
+//Allows targeted ID to be accessed on multiple pages
+
 const selectedPoster = (state = [], action) => {
   console.log('action', action);
   switch (action.type) {

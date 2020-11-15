@@ -3,7 +3,6 @@ import axios from 'axios';
 
 // Add Movie to Home Page
 function* postMovie(action) {
-  console.log('tweet tweet, post', action);
   try {
     yield put({ type: 'ERROR_RESET' });
     yield axios.post('/api/movie', action.payload);

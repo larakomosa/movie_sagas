@@ -4,7 +4,7 @@ import axios from 'axios';
 function* getMovies(action) {
   try {
     yield put({ type: 'ERROR_RESET' });
-    const response = yield axios.get('/api/movie');
+    const response = yield axios.get('/api/movie'); //get route path
     console.log(response.data);
     // version of a dispatch = put
     yield put({
@@ -14,8 +14,8 @@ function* getMovies(action) {
   } catch (err) {
     console.log('GET all movies error', err);
     yield put({
-      type: 'ERROR_MSG', //***Need to do error message reducer***
-      payload: 'There was a problem the details! Please try again.',
+      type: 'ERROR_MSG',
+      payload: 'There was a problem getting your movies!! Please try again.',
     });
   }
 }

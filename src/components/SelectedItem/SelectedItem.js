@@ -10,7 +10,11 @@ class SelectedItem extends Component {
       //movie details are accessed from store using "selected" reducer
       <div className="row">
         <div className="image col-4">
-          <img src={this.props.store.selected.poster} class="rounded" />
+          <img
+            src={this.props.store.selected.poster}
+            class="rounded"
+            alt={this.props.store.selected.description}
+          />
         </div>
         <div className="description col-8">
           <h2>{this.props.store.selected.title}</h2>
