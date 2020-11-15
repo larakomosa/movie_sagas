@@ -1,4 +1,5 @@
 // Used to store targeted (by ID) movie and genre information
+
 const selected = (state = [], action) => {
   switch (action.type) {
     case 'SET_SELECTED':

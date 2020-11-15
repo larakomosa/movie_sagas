@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import './Add-Movie.css';
 import Divider from '@material-ui/core/Divider';
+import swal from 'sweetalert';
 
 class Add extends Component {
   state = {
+    //sets initial state of newMovie object
     newMovie: {
       title: '',
       poster: '',
@@ -15,33 +17,33 @@ class Add extends Component {
   };
 
   handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(`Adding movie`, this.state.newMovie);
-    // TODO - axios request to server to add book
+    event.preventDefault(); // TODO - axios request to server to add movie
 
     if (
+      //requires user to fill all fields
       this.state.newMovie.title === '' ||
       this.state.newMovie.poster === '' ||
       this.state.newMovie.description === ''
     ) {
-      alert('Please select a number that indicates how you are feeling');
+      swal('Please complete all input fields');
     } else if (this.state.newMovie.genre_id === '') {
-      alert('Please choose a genre');
+      swal('Please choose a genre');
     } else {
       this.props.dispatch({
-        type: 'POST_MOVIE',
-        payload: this.state.newMovie,
+        type: 'POST_MOVIE', //dispatches post request
+        payload: this.state.newMovie, //sends newMovie values
       });
-      this.props.history.push('/'); //moves user back to home to next page
+      this.props.history.push('/'); //moves user back to homepage to after movie is submitted
     }
   };
 
   handleCancel = (event) => {
     event.preventDefault();
-    this.props.history.push('/'); //moves user back to home to next page
+    this.props.history.push('/'); //moves user back to home page
   };
 
   handleChangeFor = (propertyName) => (event) => {
+    //captures values for inputted information
     this.setState({
       newMovie: {
         ...this.state.newMovie,
@@ -99,7 +101,7 @@ class Add extends Component {
           </select>
           <Button
             variant="outlined"
-            color="primary"
+            color="default"
             type="submit"
             size="small"
             onClick={this.handleSubmit}

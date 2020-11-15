@@ -11,27 +11,19 @@ CREATE TABLE "genres" (
   "name" VARCHAR(80) NOT NULL
 );
 
-
 -- CREATE JUNCTION TABLE
 -- https://github.com/myronschippers/castor-sql-many-to-many/blob/main/database.sql
-REATE TABLE "movies_genres" (
+
+CREATE TABLE "movies_genres" (
 	"id" serial primary key,
 	"movie_id" int references "movies",
 	"genre_id" int references "genres"
 );
 
+-- junction table 
 INSERT INTO "movies_genres" ("movie_id", "genre_id")
-VALUES (1,7), (1,11),(2, 2),
-(2, 9),
-(3, 13),
-(3, 1),
-(4, 4),
-(5, 6),
-(5, 10),(6,1), (7,1), (8,2), (8,4), (9,2), (9,4), (10,12), (10,1), (11,11), (12,3),(12,6), (13,7), (13,5), (13,10), (14,2), (14,4), (14,1)
-
--- X You will need to create the junction table that stores the relationships between "movies" and "genres"
--- X This table will need to be populated with some data as well (INSERTS)
--- X Recall that this Junction Table will just be a table of ids!
+VALUES 
+(1,7), (1,11),(2, 2),(2, 9),(3, 13),(3, 1),(4, 4),(5, 6), (5, 10),(6,1), (7,1), (8,2), (8,4), (9,2), (9,4), (10,12), (10,1), (11,11), (12,3),(12,6), (13,7), (13,5), (13,10), (14,2), (14,4), (14,1)
 
 -- starter movies
 INSERT INTO "movies" ("title", "poster", "description")

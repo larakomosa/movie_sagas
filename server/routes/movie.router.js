@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  //query pulls information for multiple tables
   const queryText = `SELECT * FROM "movies"
 JOIN "movies_genres" ON "movies".id = "movies_genres".movie_id
 JOIN "genres" ON "movies_genres".genre_id = "genres".id

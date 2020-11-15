@@ -13,13 +13,8 @@
   vertical-align: center;
 }
 
-.movieButton {
-  margin-top: 15px;
-}
-
 .btn-outline-warning {
   height: 30px;
   padding-top: 5px;
-  /* border: rgb(43, 12, 12) solid 1px; */
   color: #877c47;
 }

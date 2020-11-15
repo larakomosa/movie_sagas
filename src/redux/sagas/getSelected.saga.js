@@ -9,13 +9,13 @@ function* getSelected(action) {
     const genreArray = response.data.map((movie) => {
       return {
         genre_id: movie.genre_id, //
-        category: movie.name, //<----transforms ID to item
+        category: movie.name, //<----transforms ID to item. (process mapped in line comments and then removed for brevity. See commit 4abd41d70b75e839764595fb8c706d2b85b248cd)
       };
     });
     yield put({
       type: 'SET_SELECTED',
       payload: { ...response.data[0], genreArray }, // <----Send 1st movie array only (index of zero) + genreArray
-    }); // <--- Thanks to my friend Joe Kuckleman with Programmatis for showing me this payload trick.
+    });
   } catch (err) {
     console.log(err);
     yield put({
