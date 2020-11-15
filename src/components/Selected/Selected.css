@@ -1,0 +1,6 @@
+.genres {
+  float: right;
+  text-align: right;
+  border: black 5px solid;
+  display: inline;
+}

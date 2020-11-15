@@ -7,9 +7,10 @@ class SelectedItem extends Component {
     return (
       <div className="row">
         <div className="image col-4">
-          <img src={this.props.store.selected.poster} />
+          <img src={this.props.store.selected.poster} class="rounded" />
         </div>
         <div className="description col-8">
+          <h1>{this.props.store.selected.title}</h1>
           <p>{this.props.store.selected.description}</p>
         </div>
       </div>

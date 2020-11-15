@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 // import axios from 'axios';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'; //brought in to access page linking
+import { withRouter } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 class MovieItem extends Component {
   componentDidMount() {
@@ -26,15 +30,24 @@ class MovieItem extends Component {
 
   render() {
     return (
-      <div className="itemDiv col-4">
-        <div
+      <Card className="itemDiv col-4" borderColor="primary.main">
+        <CardContent
           className="movieBox"
           onClick={(event) => this.handleClick(this.props.item.id)}
         >
-          <div className="titleControl"> {this.props.item.title}</div>
-          <img src={this.props.item.poster} />
-        </div>
-      </div>
+          <Typography
+            className="titleControl"
+            gutterBottom
+            variant="h5"
+            component="h2"
+          >
+            {this.props.item.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            <img src={this.props.item.poster} class="rounded" />
+          </Typography>
+        </CardContent>
+      </Card>
     );
   }
 }
@@ -44,6 +57,3 @@ const mapStoreToProps = (store) => ({
 });
 
 export default withRouter(connect(mapStoreToProps)(MovieItem));
-
-//Using withRouter to access this.props.history.push
-//stackoverflow.com/questions/53539314/what-is-withrouter-for-in-react-router-dom

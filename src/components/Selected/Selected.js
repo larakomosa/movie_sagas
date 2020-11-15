@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 import SelectedItem from '../SelectedItem/SelectedItem';
+import '../SelectedItem/SelectedItem.css'; //imported so item specific formatting is including on render
+import './Selected.css';
 
 class Selected extends Component {
   componentDidMount() {
@@ -20,9 +22,8 @@ class Selected extends Component {
     }
     return (
       <div>
-        <h2>{this.props.store.selected.title}</h2>
         <SelectedItem />
-        <div className="genres">{htmlArray}</div>
+        <div className="genres col-8">{htmlArray}</div>
       </div>
     );
   }
