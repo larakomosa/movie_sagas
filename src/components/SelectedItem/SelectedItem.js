@@ -4,6 +4,10 @@ import { withRouter } from 'react-router-dom'; //brought in to access page linki
 import Divider from '@material-ui/core/Divider';
 
 class SelectedItem extends Component {
+  handleHome = (event) => {
+    event.preventDefault();
+    this.props.history.push('/'); //moves user back to home page
+  };
   render() {
     return (
       //bootstrap is used to format page so poster and description are side by side
@@ -15,6 +19,14 @@ class SelectedItem extends Component {
             class="rounded"
             alt={this.props.store.selected.description}
           />
+          <br />
+          <button
+            type="button"
+            class="btn btn-outline-primary .btm-sm"
+            onClick={this.handleHome}
+          >
+            <h4>Back to List</h4>
+          </button>
         </div>
         <div className="description col-8">
           <h2>{this.props.store.selected.title}</h2>

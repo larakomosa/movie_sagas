@@ -54,7 +54,7 @@ class Add extends Component {
 
   render() {
     return (
-      <div>
+      <div className="body">
         <h2>Add Movie</h2>
         <Divider />
         <form className="form">

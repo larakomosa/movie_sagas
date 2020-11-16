@@ -17,11 +17,6 @@ class Selected extends Component {
     });
   }
 
-  handleHome = (event) => {
-    event.preventDefault();
-    this.props.history.push('/'); //moves user back to home page
-  };
-
   render() {
     let htmlArray = null;
     if (this.props.store.selected.genreArray) {
@@ -35,13 +30,7 @@ class Selected extends Component {
       //HTMLArray prints genres for targeted ID
       <div>
         <SelectedItem />
-        <button
-          type="button"
-          class="btn btn-outline-warning .btm-sm"
-          onClick={this.handleHome}
-        >
-          <h4>Back to List</h4>
-        </button>
+
         <div className="genres col-8">
           <h2>Genres</h2>
           <Divider />
